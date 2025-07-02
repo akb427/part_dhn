@@ -3,7 +3,6 @@ pth = pwd;
 pth_split = split(pth, string(filesep));
 
 addpath(pth+append(filesep+"cen_control"))
-%addpath(fullfile(pth_split{1:4})+append(filesep+"casadi-3.6.3-windows64-matlab2018b"))
 
 %% Problem setup
 
@@ -34,8 +33,8 @@ num.horizon = (params.tf)/params.tf_sim;
 [G,num,elems,params,temp_prof] = generate_params4(G,num,elems, params);
 
 % Cost weights
-params.w_T = 10^-2;%10^-4;
-params.w_Q = 3*10^-6;%10^-6;
+params.w_T = 10^-2;
+params.w_Q = 3*10^-6;
 params.w_flex = 5;
 
 % Valve settings
@@ -44,7 +43,7 @@ params.v_coeff = sqrt(params.pipes(14,3));
 
 params.valve_closed = 10^5;
 params.zeta_max = 3.3*10^6;
-params.zeta_min = 0;%params.pipes(14,3);
+params.zeta_min = 0;
 
 % Minimum mass flow
 params.mdot_plant_min = 0.05;
@@ -92,8 +91,7 @@ init.dPe = cen_nom(end).dPe(:,1:num.seg);
 init.Pn = cen_nom(end).Pn(:,1:num.seg);
 init.valve = cen_nom(end).valve(:,1:num.seg);
 
-%init.intQ = (-.5+rand(num.user,1)).*params.Cap_u(:,1);
-%init.intQ = [.2; -.3; .6; -.9].*params.Cap_u(:,1);
+% Initial used capacity
 init.intQ = [.08; -.1; .02; -.04].*params.Cap_u(:,1);
 
 %% Cost function parameters
@@ -110,17 +108,6 @@ w_olm.delta_min_rlx = [5; .8; .5; 10];
 w_olm.n_iter_max = 20;
 w_olm.n_iter_max_slack = 20;
 
-% %% Centralized
-% 
-% cen_opt = solve_cen_flex(num,elems,params,init);
-% 
-% %% Initialize using centralized
-% 
-% init.mdot_e = cen_opt(1).mdot_e(:,1:num.seg);
-% init.dPe = cen_opt(1).dPe(:,1:num.seg);
-% init.Pn = cen_opt(1).Pn(:,1:num.seg);
-% init.valve = cen_opt(1).valve(:,1:num.seg);
-
 %% Save
 
-save("ws_"+string(datetime('today', 'Format', 'MM_dd')))
+save("sim_4user_params_"+string(datetime('today', 'Format', 'MM_dd')))
