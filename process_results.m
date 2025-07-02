@@ -7,7 +7,7 @@ addpath(genpath(fullfile(pth_split{1:end})))
 
 %% Get Results from bnb
 
-load("ws_04_10","w_olm","G","elems","num","params","init")
+load("sim_4user_params","w_olm","G","elems","num","params","init")
 %load("rslts_olm")
 
 

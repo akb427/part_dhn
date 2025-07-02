@@ -3,7 +3,7 @@ clc, clear, close all
 
 %% Load Problem information
 
-load("ws_03_18","w_olm","G","elems","num","params","init")
+load("sim_4user_params","w_olm","G","elems","num","params","init")
 
 %% Add subfolders to path
 
