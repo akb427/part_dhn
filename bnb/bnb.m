@@ -22,8 +22,10 @@ function [part_best, rslt, idx_best] = bnb(w_olm,G,elems,num,params,init)
 %       rslt      - Structure containing all candidates and costs.
 %       idx_best  - Index in rslt of the best-performing partition.
 %
-%   See also: generate_problem, ParforProgressbar, dec2part, find_olm,
-%   load_data, generate_cand
+%   DEPENDENCIES: dec2part, find_olm,load_data, generate_cand
+%   REQUIREMENTS: Parallel Computing Toolbox, ParforProgressbar
+%
+%   See also: generate_problem
 
 %% Problem Setup
 pth = pwd;
