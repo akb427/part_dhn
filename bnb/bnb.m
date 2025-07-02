@@ -1,7 +1,29 @@
 function [part_best, rslt, idx_best] = bnb(w_olm,G,elems,num,params,init)
-%BNB Summary of this function goes here
-%   part_i: initial partioning, should be a one cut
+%BNB branch and bound algorithm for finding optimal partitioning 
 %
+%   [part_best, rslt, idx_best] = BNB(w_olm, G, elems, num, params, init)
+%
+%   Performs a branch-and-bound search to find the partitioning of a
+%   DHN with layout G that minimizes the optimality loss
+%   metric (OLM), with parameters w_olm. The algorithm explores the space of
+%   possible partitions, prunes nonconverging or suboptimal branches, and
+%   returns the best partition found.
+%
+%   INPUTS:
+%       w_olm   - Structure ofparameters for the olm function.
+%       G       - Digraph representing the network structure.
+%       elems   - Structure containing categorized element.
+%       num     - Structure containing numeric problem specifications.
+%       params  - Structure of problem parameters.
+%       init    - Initial guesses for olm calculation.
+%
+%   OUTPUTS:
+%       part_best - Matrix of element partitioning.
+%       rslt      - Structure containing all candidates and costs.
+%       idx_best  - Index in rslt of the best-performing partition.
+%
+%   See also: generate_problem, ParforProgressbar, dec2part, find_olm,
+%   load_data, generate_cand
 
 %% Problem Setup
 pth = pwd;
