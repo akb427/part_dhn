@@ -1,4 +1,15 @@
-
+%GENERATE_PROBLEM  Creates parameters for DHN partitioning problem.
+%
+%   DESCRIPTION:
+%   Generates the graph and parameters for the 4 user test case used in the
+%   paper. Saves it to be used in the simulation.
+%
+%   OUTPUTS:
+%       sim_4user_params - .mat file of G, params, elems, num, init, w_olm 
+%
+%   DEPENDENCIES: generate_params4, solve_cen_nom
+%
+%   SEE ALSO: partition_system
 
 %% Add Paths
 pth = pwd;

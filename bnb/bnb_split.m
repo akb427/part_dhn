@@ -1,7 +1,25 @@
 function bnb_split(w_olm,G,elems,num,params,init,cand_tbs)
-%BNB Summary of this function goes here
-%   part_i: initial partioning, should be a one cut
+%BNB_SPLIT branch and bound algorithm for finding optimal partitioning, 
+%split for super computer 
 %
+%   BNB_SPLIT(w_olm, G, elems, num, params, init, cand_tbs)
+%
+%   Performs a branch-and-bound search to find the partitioning of a
+%   DHN with layout G that minimizes the optimality loss
+%   metric (OLM), with parameters w_olm. The algorithm explores a subset 
+%   of partitions, prunes nonconverging or suboptimal branches.
+%
+%   INPUTS:
+%       w_olm    - Structure ofparameters for the olm function.
+%       G        - Digraph representing the network structure.
+%       elems    - Structure containing categorized element.
+%       num      - Structure containing numeric problem specifications.
+%       params   - Structure of problem parameters.
+%       init     - Initial guesses for olm calculation.
+%       cand_tbs - Subset of candidates to explore 
+%
+%   DEPENDENCIES: dec2part, find_olm,load_data, generate_cand
+%   REQUIREMENTS: Parallel Computing Toolbox, ParforProgressbar
 
 %% Load current results or create them
 pth = pwd;

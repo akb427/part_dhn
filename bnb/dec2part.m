@@ -1,8 +1,21 @@
 function cand_bin = dec2part(idx_row, split_fin, cand_all, minDigits)
-%HAMMINGDIST hamming distance between binary representations
-   % n: Number of elements
-   % b: Decimal representation of the warm start solution
-   % hd: hamming distances for each of the solutions 1:2^n-1
+%DEC2PART  converts the numeric partition description to the system 
+%partitioning vector.
+%
+%   cand_bin = DEC2PART(idx_row, split_fin, cand_all, minDigits)
+%
+%   DESCRIPTION:
+%   Converts the sequence of partitions into a single vector where the
+%   index of the vector is the element and the number is the grouping
+%
+%   INPUTS:
+%       idx_row   - row of partitioing in split_fin
+%       split_fin - level of partitioning
+%       cand_all  - List of all partitionings
+%       minDigits - number of elements to be partitioned
+%
+%   OUTPUTS:
+%       cand_bin - numeric partitioning
 
 %% Gather sequence
 cand_dec = zeros(1,split_fin);
