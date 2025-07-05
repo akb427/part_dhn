@@ -1,7 +1,24 @@
 function [sp] = create_pass_var(selems,sn,sparams,idx_sg,idx_plantP,TsetR)
 %CREATE_PASS_VAR create elements needed to be passes to neighboring
-%subgraphs based on previous time step results
-
+%subgraphs based on previous time step results.
+%
+%   [sp] = CREATE_PASS_VAR(selems,sn,sparams,idx_sg,idx_plantP,TsetR)
+%
+%   DESCRIPTION:
+%   Create elements needed to be passes to neighboring subgraphs based on
+%   previous time step results. Updated according to information passing
+%   rules.
+%
+%   INPUTS:
+%       selems      - Structures containing categorized subsystems element.
+%       sn          - Structures containing numeric subsystems specifications.
+%       sparams     - Structures containing subsystem problem parameters.
+%       idx_sg      - Numeric index of subsystem being considered.
+%       idx_plantP  - Numeric index of subsystem controlling plant pressure.
+%       TsetR       - Numeric set return temperature of users HEX.
+%
+%   OUTPUTS:
+%       sp          - Structure of subsystem parameter being considered.
 
 %% Current Subgraph
 

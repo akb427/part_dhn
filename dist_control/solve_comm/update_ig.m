@@ -1,6 +1,20 @@
 function [sp_s] = update_ig(sp_s, rslts_i, se, is_slack)
-%UPDATE_IG Summary of this function goes here
-%   Detailed explanation goes here
+%UPDATE_IG  Update initial guesses for dmpc problem.
+%
+%   [sp_s] = UPDATE_IG(sp_s, rslts_i, se, is_slack)
+%
+%   DESCRIPTION:
+%   Update the initial guesses for the next solution interation based on
+%   the values in rslts_i for a single subsystem.
+%
+%   INPUTS:
+%       sp_s     - Structure of subsystem parameters.
+%       rslts_i  - Stucture of subsystem results.
+%       se       - Structure containing categorized subsystem element.
+%       is_slack - Binary variable indicating if there is slack pressure.
+%
+%   OUTPUTS:
+%       sp_s     - Updated structure of subsystem parameters.
 
 %% Update Initial Guesses
 

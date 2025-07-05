@@ -1,6 +1,23 @@
 function [delta_var, stat, isconverge] = check_convergence(rslts, isconverge, se, delta_min, Gconv)
-%CALCULATE_DELTA Summary of this function goes here
-%   Detailed explanation goes here
+%CHECK_CONVERGENCE  Check convergence of subsystems.
+%
+%   [delta_var, stat, isconverge] = CHECK_CONVERGENCE(rslts, isconverge, se, delta_min, Gconv)
+%
+%   DESCRIPTION:
+%   Checks if change in results meets a convergence criteria and if all
+%   upstream subsystems have converged.
+%
+%   INPUTS:
+%       rslts       - Array of structures with subsytem results.
+%       isconverge  - Vector of binary indicators of convergence.
+%       se          - Structure containing categorized subsystem element.
+%       delta_min   - Vector of convergence thresholds by variable type.
+%       Gconv       - Graph showing subsystem convergence hierarchy.
+%
+%   OUTPUTS:
+%       delta_var   - Matrix of variable change by variable type and subgraph.
+%       stat        - Strings of solution outcome from CasAdi.
+%       isconverge  - Updated vecotr of binary indicators of convergence.
 
 %%
 delta_var = zeros(4,numel(isconverge));
