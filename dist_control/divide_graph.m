@@ -20,7 +20,7 @@ function [sg,se,sn,sp] = divide_graph(idx_sg,G,part,elems,num,params)
 %   OUTPUTS:
 %       sg  - Digraph of subsytem elements.
 %       se  - Structure of subsystem elements.
-%       sn  - Structure of subsystem numeric specifications
+%       sn  - Structure of subsystem numeric specifications.
 %       sp  - Structure of subsystem parameters.
 %
 %   SEE ALSO: subgraph_params
