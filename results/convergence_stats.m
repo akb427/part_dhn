@@ -1,6 +1,22 @@
 function [rslt,data] = convergence_stats(rslt,idx_best,c_cen,params_plot)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%CONVERGENCE_STATS  statistics about BnB results.
+%
+%   [rslt,data] = CONVERGENCE_STATS(rslt,idx_best,c_cen,params_plot)
+%
+%   DESCRIPTION:
+%   Takes results of bnb partitioning algorithm, finds statistics and plots
+%   bar graph showing number of solutions explored and percent converged
+%   for this solution set.
+%
+%   INPUTS:
+%       rslt        - Strucutre of cand and costs for bnb algorithm.
+%       idx_best    - Numeric index of best partition in rslt.
+%       c_cen       - Numeric cost of centralized solution.
+%       params_plot - Structure of parameters for creating plots.
+%
+%   OUTPUTS:
+%       rslt - rslt trimmed to only include solved cut level.
+%       data - Structure of statistics about solution method.
 
 %% Remove empty cells
 
