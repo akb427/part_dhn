@@ -1,6 +1,30 @@
-function [v_sim, params_sim, is_fail] = simulate_flow(M_sim, params_sim, params, rslts_i, num, se, idx_horizon)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+function [v_sim, params_sim, is_fail] = simulate_flow(Msim, params_sim, params, rslts_i, num, se, idx_horizon)
+%SIMULATE_FLOW  Simulate network behavior based on control inputs.
+%
+%   [v_sim, params_sim, is_fail] = SIMULATE_FLOW(M_sim, params_sim, params, rslts_i, num, se, idx_horizon)
+%
+%   DESCRIPTION:
+%   Simulates network response to set inital mass flow rate and valve
+%   positions. Parses this information from the distributed control 
+%   results. Uses a pre-defined CasADi function to resolve network
+%   pressures and flows. Returns the simulation results and an updated
+%   initial conditions for the next control step. 
+%
+%   INPUTS:
+%       Msim        - CasADi functions for simulating network flow.
+%       params_sim  - Structure of simulation parameters.
+%       params      - Structure of problem parameters.
+%       rslts_i     - Structures of subsystem results from distributed
+%                     optimization
+%       num         - Structure of numeric problem specifications.
+%       se          - Structures of subsystem categorized elements.
+%       idx_horizon - Numeric index of current problem step.
+%
+%   OUTPUTS:
+%       v_sim       - Structure of simulation results.
+%       params_sim  - Structure of simulation parameters with new initial
+%                     conditions.
+%       is_fail     - Binary indicator if simulation converged.
 
 %% Timing indices
    
@@ -29,16 +53,16 @@ for idx_sg = 1:num.sg
 end
 
 %% Call function
-vsim_i = M_sim.call(params_sim);
-vsim_i.status = M_sim.stats.return_status;
-vsim_i.valid = M_sim.stats.success;
+vsim_i = Msim.call(params_sim);
+vsim_i.status = Msim.stats.return_status;
+vsim_i.valid = Msim.stats.success;
 v_sim = structfun(@full,vsim_i,'UniformOutput',false);
 % If call fails
 if ~vsim_i.valid
     params_sim.i_mdot_e = ones(num.edge,1);
-    vsim_i = M_sim.call(params_sim);
-    vsim_i.status = M_sim.stats.return_status;
-    vsim_i.valid = M_sim.stats.success;
+    vsim_i = Msim.call(params_sim);
+    vsim_i.status = Msim.stats.return_status;
+    vsim_i.valid = Msim.stats.success;
 end
 
 is_fail = ~vsim_i.valid;

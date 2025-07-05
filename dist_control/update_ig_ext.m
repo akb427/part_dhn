@@ -1,8 +1,24 @@
 function [sp_s] = update_ig_ext(sp_s, rslts_i, se, is_slack)
-%UNTITLED7 Summary of this function goes here
-%   Detailed explanation goes here
+%UPDATE_IG_EXT  Get subsystem initial conditions after simulation.
+%
+%   [sp_s] = UPDATE_IG_EXT(sp_s, rslts_i, se, is_slack)
+%
+%   DESCRIPTION:
+%   Get subsystem initial conditions from network level information after
+%   the distributed control problem is solved, before the next simulation
+%   timestep.
+%
+%   INPUTS:
+%       sp_s    - Structure of subsystem problem parameters.
+%       rslts_i - Structures of subsystem results from distributed
+%                 optimization
+%       se      - Structure of subsystem categorized elements.
+%       is_slack- Binary indicating if subsystem required slack.
+%
+%   OUTPUTS:
+%       sp_s    - Updated structure of subsystem problem parameters.
 
-%%
+%% Update initial guesses
 
 sp_s.i_mdot_e = [rslts_i.mdot_e(:,2:end) rslts_i.mdot_e(:,end)];
 sp_s.i_dPe = [rslts_i.dPe(:,2:end) rslts_i.dPe(:,end)];

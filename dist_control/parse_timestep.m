@@ -1,18 +1,23 @@
 function [sp_s] = parse_timestep(sp_s,sp,se,sn,idx_horizon,params,params_sim)
-%PARSE_IG Get subsystem initial conditions from network level information.
+%PARSE_TIMESTEP Get subsystem initial conditions from network level information.
 %
-%   [sp] = PARSE_IG(init,se)
+%   [sp_s] = PARSE_TIMESTEP(sp_s,sp,se,sn,idx_horizon,params,params_sim)
 %
 %   DESCRIPTION:
-%   Create the local initial conditions based on the network wide initial
-%   conditions for a single subsystem.
+%   Extracts the local timestep conditions based on the network-wide
+%   problem parameters for the simulation.
 %
 %   INPUTS:
-%       init    - Structure of initial conditions for problem.
-%       se      - Structure of categorized subsystem elements.
+%       sp_s    - Structure of initial conditions for problem.
+%       sp      - Structure of subsystem problem parameters.
+%       se      - Structure of subsystem categorized elements
+%       sn      - Structure of subsystem numeric problem specifications.
+%       idx_horizon - Numeric index of current problem step.
+%       params  - Structure of problem parameters.
+%       params_sim  - Structure of simulation parameters.
 %
 %   OUTPUTS:
-%       sp - Structure of subsystem parameters.
+%       sp_s    - Structure of subsystem parameters for the timestep.
 
 %% Timing indices
 idx_i = idx_horizon:(idx_horizon-1+sn.seg);
