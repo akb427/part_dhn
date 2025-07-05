@@ -1,8 +1,19 @@
 function [cand_list] = generate_2cuts(minDigits,elems)
 %FIND_2CUTS find bipartitions that are valid according to the plant 
 %pressure assignment
-    % minDigits: Number of elements to be partitioned
-    % cand_list: List of valid solutions sorted by similarity to cand_int_ig
+%
+%   [cand_list] = GENERATE_2CUTS(minDigits,elems)
+%
+%   DESCRIPTION:
+%   Partitions system elements ensuring that the plant is assigned to a
+%   partiton shared by one of the pipes leaving the plant
+%
+%   INPUTS:
+%       minDigits - Number of elements to be partitioned
+%       elems     - Structure containing categorized elements.
+%
+%   OUTPUTS:
+%       cand_list - List of valid solutions
 
 %% Find Valid Candidates
 % all possible unique cuts
