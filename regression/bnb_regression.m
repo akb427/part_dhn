@@ -1,7 +1,23 @@
 function [part_best, rslt_ml, idx_best] = bnb_regression(rslt,yfit,n_part,w_olm)
-%BNB Summary of this function goes here
-%   part_i: initial partioning, should be a one cut
+%BNB_REGRESSION branch and bound with fit prediction integrated and known solutions 
 %
+%   [part_best, rslt_ml, idx_best] = BNB_REGRESSION(rslt,yfit,n_part,w_olm)
+%
+%   Performs a branch-and-bound search with a pre-screening step
+%   incorporated in yfit. It assumes all costs are knonw in rslts. 
+%
+%   INPUTS:
+%       rslt    - Structure of results with numeric candidates and costs
+%       yfit    - Cell of binary indicators of predicted convergence
+%       n_part  - Number of partitions completed
+%       w_olm   - Structure of parameters for the olm function.
+%
+%   OUTPUTS:
+%       part_best - Matrix of best ml_informed element partitioning.
+%       rslt_ml   - Structure containing screened candidates and costs.
+%       idx_best  - Index in rslt_ml of the best-performing partition.
+%
+%   DEPENDENCIES: dec2part
 
 %% Problem Setup
 

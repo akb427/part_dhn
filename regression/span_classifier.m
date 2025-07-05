@@ -1,6 +1,23 @@
 function [precision,recall] = span_classifier(rslt,n_cand,n_comm)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+%SPAN_CLASSIFIER  Function to test the sensitivity of the classifier.
+%
+%   [precision,recall] = SPAN_CLASSIFIER(rslt,n_cand,n_comm)
+%
+%   DESCRIPTION:
+%   Function to test the sensitivity of the classifier to number of
+%   training points and number of learners via precision, recall and
+%   accuracy. Plots the results.
+%
+%   INPUTS:
+%       rslt    - Stucture of cand and cost for total bnb search.
+%       n_cand  - Vector of number of partitions in each cut set.
+%       n_comm  - Number of communication links in the problem.
+%
+%   OUTPUTS:
+%       precision   - Vector of TP/(TP+FP) for each parameter set.
+%       recall      - Vector of TP/(TP+FN) for each parameter set.
+%
+%   DEPENDENCIES: trainClassifier
 
 %% Problem Setup
 q_train = [100 500 1000 2000 5000];
@@ -59,7 +76,7 @@ recall_std  = std(recall, 0, 3);
 
 figure('Name', 'Hyperparameter')
 tiledlayout(3,1)
-clr = lines(n_q_learner); % or try parula, jet, etc.
+clr = lines(n_q_learner);
 ft = 14;
 ln = 1;
 mk = 8;
