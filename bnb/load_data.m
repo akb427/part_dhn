@@ -1,6 +1,22 @@
 function [c_vec, part] = load_data(file,w)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%LOAD_DATA  Load partitioning results from file.
+%
+%   [c_vec, part] = LOAD_DATA(file,w)
+%
+%   DESCRIPTION:
+%   Loads data in prescribed files and returns cost vector and partition in
+%   vector form.
+%
+%   INPUTS:
+%       file    - String of file to be loaded. 
+%       w       - Sturture of weights for olm terms.
+%
+%   OUTPUTS:
+%       c_vec   - Cost vector for partition
+%                 [total, min size, solve, is violation, iter, max size]
+%       part    - Vector of partitioned elements
+%
+%   SEE ALSO: bnb, find_olm
 
 %% Load
 
@@ -20,6 +36,8 @@ iter = max(v.iter);
 sz = accumarray(part',1);
 min_sz = max(sz(1:end-1));
 max_sz = max(sz);
+
+%% Combine into cost vector
 
 c = c_slv+w.viol*c_viol+w.iter*iter+w.sz*max_sz;
 c_min_sz = c_slv+w.viol*c_viol+w.iter*iter+w.sz*min_sz;

@@ -1,31 +1,24 @@
 function [rslt] = generate_cand(tbe, split, rslt, elems, w_olm)
-%FUNCTION_NAME  One-line summary of what the function does.
+%GENERATE_CAND  Finds all valid further partitions of listed partitions .
 %
-%   [out1, out2, ...] = FUNCTION_NAME(in1, in2, ...)
+%   [rslt] = GENERATE_CAND(tbe, split, rslt, elems, w_olm)
 %
 %   DESCRIPTION:
-%   Briefly explain the purpose of the function, what it computes, or how it
-%   fits into the overall workflow. Mention any important assumptions or side
-%   effects (e.g., plotting, modifying global variables, saving files).
+%   Loops over candidates, generating additional cut solutions, checking
+%   that they are valid with relation to the plant, and adding their
+%   decimal representation to the rslt.cand cell.
 %
 %   INPUTS:
-%       in1  - Description of input 1 (type, format, units if applicable)
-%       in2  - Description of input 2
-%       ...  - Additional inputs as needed
+%       tbe     - Numeric index of  candidates to be further partitioned.
+%       split   - Current level of cuts in the partition.
+%       rslt    - Structure of cand and cost.
+%       elems   - Strucutre containing categoriezed elements.
+%       w_olm   - Structure of parameters for the olm function.
 %
 %   OUTPUTS:
-%       out1 - Description of output 1 (what it represents)
-%       out2 - Description of output 2
-%       ...  - Additional outputs as needed
+%       rslt    - Structure of cand and cost with new cand.
 %
-%   EXAMPLE USAGE:
-%       [best_part, results] = my_partition_solver(G, params);
-%
-%   DEPENDENCIES:
-%       List other custom functions this function calls, if any.
-%
-%   SEE ALSO:
-%       RelatedFunction1, RelatedFunction2
+%   DEPENDENCIES: dec2part
 
 %% Problem setup
 

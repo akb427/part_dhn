@@ -10,7 +10,7 @@ function [part_best, rslt, idx_best] = bnb(w_olm,G,elems,num,params,init)
 %   returns the best partition found.
 %
 %   INPUTS:
-%       w_olm   - Structure ofparameters for the olm function.
+%       w_olm   - Structure of parameters for the olm function.
 %       G       - Digraph representing the network structure.
 %       elems   - Structure containing categorized element.
 %       num     - Structure containing numeric problem specifications.
