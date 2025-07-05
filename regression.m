@@ -3,7 +3,7 @@ clc, clear, close all
 
 pth = pwd;
 load('sim_4user_params','num','w_olm')
-load(pth+append(filesep,"rslts_curr.mat"),'rslt')
+load(pth+append(filesep,"rslts_curr.mat"),'rslt','idx_best')
 % trim data
 idx_slv = ~cellfun(@isempty,rslt.cost);
 rslt.cost = rslt.cost(idx_slv);
@@ -119,8 +119,8 @@ fig_ROC(vertcat(val{:}),vertcat(yfit{:}), vertcat(scores{:}))
 
 load("cen_sim2");
 
-[~, data_og] = convergence_stats(rslt,cen_sim(1).cost);
-[~, data_ml] = convergence_stats(rslt_ml,cen_sim(1).cost);
+[~, data_og] = convergence_stats(rslt,idx_best,cen_sim(1).cost,params_plot);
+[~, data_ml] = convergence_stats(rslt_ml,idx_best_ml,cen_sim(1).cost,params_plot);
 
 compare_convergence(data_og,data_ml, rslt, rslt_ml,cen_sim(1).cost)
 
