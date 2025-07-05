@@ -1,11 +1,25 @@
 function [selems,snum] = connected_edges(elems,selems,snum,sG,G,part)
-%CONNECTED_EDGES Get edges connected to current subgraph and associated nodes
-
-%% Get Up & Down Info
-
-% num_sg = numel(selems);
-% [selems, snum] = cellfun(@(sn,idx_sg)upstream_edges(elems,selems,sn,idx_sg,G,part),snum,num2cell(1:num_sg),'UniformOutput',false);
-% [selems, snum] = cellfun(@(sn,idx_sg)downstream_edges(elems,selems,sn,idx_sg,G,part),snum,num2cell(1:num_sg),'UniformOutput',false);
+%CONNECTED_EDGES Get edges connected to current subgraph and associated
+%nodes.
+%
+%   [selems,snum] = CONNECTED_EDGES(elems,selems,snum,sG,G,part)
+%
+%   DESCRIPTION:
+%   Adds additional categorization of subsystem elements based on
+%   interconnection information between subgraphs, needed for the
+%   distributed control of the DHN. Uses tables for readability.
+%
+%   INPUTS:
+%       elems   - Structure of categorized element.
+%       selems  - Structures of categorized subsystem elements.
+%       snum    - Structure of numeric problem specifications.
+%       sG      - Graphs of each subsystem.
+%       G       - Graph of complete network.
+%       part    - Binary partitioning of system.
+%
+%   OUTPUTS:
+%       selems  - Updated structures of categorized subsystem elements.
+%       snum    - Updated structure of numeric problem specifications.
 
 %% Parse for Relavent Variables
 

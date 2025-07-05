@@ -11,11 +11,11 @@ function [part_best, rslt, idx_best] = bnb(w_olm,G,elems,num,params,init)
 %
 %   INPUTS:
 %       w_olm   - Structure of parameters for the olm function.
-%       G       - Digraph representing the network structure.
-%       elems   - Structure containing categorized element.
-%       num     - Structure containing numeric problem specifications.
+%       G       - Digraph of the network structure.
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
 %       params  - Structure of problem parameters.
-%       init    - Initial guesses for olm calculation.
+%       init    - Structure of initial guesses for olm calculation.
 %
 %   OUTPUTS:
 %       part_best - Matrix of element partitioning.

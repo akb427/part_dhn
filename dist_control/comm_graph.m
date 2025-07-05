@@ -1,6 +1,22 @@
 function [Gconv,Gred,adj_red] = comm_graph(elems,num,se)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%COMM_GRAPH  Graph of convergence hierarchy.
+%
+%   [Gconv,Gred,adj_red] = COMM_GRAPH(elems,num,se)
+%
+%   DESCRIPTION:
+%   Creates the reduced graphs showing how subsystems interact for mass
+%   flow, pressure, and temperature by creating indidence matrices. Then
+%   merges them into the overall convergence order graph.
+%
+%   INPUTS:
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       se      - Structures of categorized subgraph elements.
+%
+%   OUTPUTS:
+%       Gconv   - Graph of hierachy needed for convergence.
+%       Gred    - Graphs of communciation directions for 3 variable types.
+%       adj_red - Adjacency matrices of Gred.
 
 %% Reduced Graph Storage
 Gred = cell(1,3);
@@ -75,6 +91,5 @@ Gconv = digraph(edge,'omitselfloops');
 % for idx_sg = 1:num.sg
 %     highlight(H,idx_sg,'NodeColor',clr(idx_sg,:),'MarkerSize',8)
 % end
-
 
 end
