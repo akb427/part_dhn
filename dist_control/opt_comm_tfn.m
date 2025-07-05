@@ -1,14 +1,30 @@
 function [M] = opt_comm_tfn(sn,se,sparams,params,IsSlack)
-%OPTIMIZE_FLOW Create functions to solve for optimal control of a DHN
-%subgraph given the behavior of neighboring subsystems
-%   G: local subgraph being controlled
-%   num: structure of sizes describing subgraph and problem
-%   elems: structure describing the elements in the subgraph
-%   sparams: local parameters
-%   params: parameters of network and control problem
+%OPT_COMM_TFN Creates function to calculate optimal subsystem operation.
+%
+%   [M] = OPT_COMM_TFN(sn,se,sparams,params,IsSlack)
+%
+%   DESCRIPTION:
+%   Uses subsystem information to create the local optimal flow problem
+%   CasADi function, used to solve the distributed control problem to
+%   minimize overall network losses via communication.
+%
+%   INPUTS:
+%       sn      - Structure of numeric  subsystem specifications.
+%       se      - Structure of categorized subsystem elements.
+%       sparams - Structure of subsystem parameters.
+%       params  - Structure of problem parameters.
+%       IsSlack - Binary indicating if slack should be included.
+%
+%   OUTPUTS:
+%       M       - Casadi function to solve optimal control problem.
+%
+%   DEPENDENCIES: graph2ss_part.
+%
+%   REQUIREMENTS: CasADi
 
  %#ok<*CHAIN>   % This is okay in CASADI
  %#ok<*FNDSB>   % This is nessecary in CASADI
+
  %% Setup Problem 
 import casadi.*
 opti_flow = casadi.Opti();

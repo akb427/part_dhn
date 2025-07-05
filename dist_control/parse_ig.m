@@ -1,6 +1,18 @@
 function [sp] = parse_ig(init,se)
-%PARSE_IG Summary of this function goes here
-%   Detailed explanation goes here
+%PARSE_IG Get subsystem initial conditions from network level information.
+%
+%   [sp] = PARSE_IG(init,se)
+%
+%   DESCRIPTION:
+%   Create the local initial conditions based on the network wide initial
+%   conditions for a single subsystem.
+%
+%   INPUTS:
+%       init    - Structure of initial conditions for problem.
+%       se      - Structure of categorized subsystem elements.
+%
+%   OUTPUTS:
+%       sp - Structure of subsystem parameters.
 
 %% Parse Initial Guesses for subgraph
 

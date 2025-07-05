@@ -8,8 +8,8 @@ function [Mcen] = opt_cen_tfn(num,elems,params)
 %   used to solve for network behavior in the loss reducing case.
 %
 %   INPUTS:
-%       num     - Structure containing numeric problem specifications.
-%       elems   - Structure containing categorized element.
+%       num     - Structure of numeric problem specifications.
+%       elems   - Structure of categorized element.
 %       params  - Structure of problem parameters.
 %
 %   OUTPUTS:

@@ -1,11 +1,29 @@
 function [Ad,Bd] = graph2ss_part(params,sparams,sn,se,mdot_e,mdot_in,ismat)
-%GRAPH2SS Convert graph, parameters and mass flow rates to state space
-%matrices
-%   G: graph of network
-%   params: network params
-%   n: strucutre to store size elements
-%   mdot_e: mass flow rate in edges
-%   ismat: true if no casadi variables are to be used
+%GRAPH2SS_PART Convert subsystem description to discrete state space
+%matrices.
+%
+%   [Ad,Bd] = GRAPH2SS_PART(params,sparams,sn,se,mdot_e,mdot_in,ismat)
+%
+%   DESCRIPTION:
+%   Converts subsystem information into state space matrices, containing
+%   current mass flow rate in the pipes. Works for both a numeric matrix
+%   (ismat=1) and casadi variables (ismat=2). Considers neighboring
+%   subsystems to be included in Ad and Bd.
+%
+%   INPUTS:
+%       params  - Structure of problem parameters.
+%       sparams - Structure of subsystem parameters.
+%       sn      - Structure containing numeric subsystem specifications.
+%       se      - Structure containing categorized subsystem elements.
+%       mdot_e  - Vector of mass flow rate in subsystem edges.
+%       mdot_in - Vector of mass flow rate in neighboring subsystems.
+%       ismat   - Numeric indicator of casadi or numeric.
+%
+%   OUTPUTS:
+%       Ad      - Discrete time state transition matrix
+%       Bd      - Discrete time state-input matrix
+%
+%   REQUIREMENTS: CasADi (if ismat=2)
 
 %#ok<*FNDSB> % needed in casadi
 import casadi.*
