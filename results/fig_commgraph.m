@@ -1,6 +1,20 @@
 function fig_commgraph(elems,num,se,params_plot)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_COMMGRAPH  Plot of communication graph with communication directions 
+%highlighted.
+%
+%   FIG_COMMGRAPH(elems,num,se,params_plot)
+%
+%   DESCRIPTION:
+%   Plots the communication graph to show the direction of communication
+%   between different subsystems in the distributed control problem.
+%
+%   INPUTS:
+%       elems       - Structure of categorized element.
+%       num         - Structure of numeric problem specifications.
+%       se          - Structures of categorized subgraph elements.
+%       params_plot - Structure of plotting parameters.
+%
+%   DEPENDENCIES: comm_graph
 
 %% Create Communication Graphs
 

@@ -129,7 +129,8 @@ params_plot.lg.ylim = [0.12,10];
 fig_olm2(data, rslt_b, params_plot)
 
 fig_graph(G,elems,num_sim, params_plot);
-fig_commgraph(G,elems,num_sim,params_plot);
+[~,selems] = subgraph_params(G,part_olm,elems,num,params);
+fig_commgraph(elems,num,selems,params_plot);
 fig_graph_ln(G_ln,elems_ln,num_ln,params_plot)
 
 fig_part(G,elems,num_sim,part_olm,params_plot);
