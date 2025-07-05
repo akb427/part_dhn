@@ -80,7 +80,7 @@ y_coord(4) = y_coord(8);
 %% Communication Graph
 
 figure('Name','Communication Graph')
-set(gcf,'Position',params_plot.g.pos)
+set(gcf,'Position',params_plot.comm.pos)
 hold on;
 
 % Legend
