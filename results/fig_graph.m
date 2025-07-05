@@ -1,6 +1,20 @@
 function fig_graph(G,elems,num,params_plot)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_GRAPH  Plots the DHN graph with edge sets highlighted.
+%
+%   FIG_GRAPH(G,elems,num,params_plot)
+%
+%   DESCRIPTION:
+%   Plot the DHN described by G, highlighting the feeding, return, bypass,
+%   and user edges, as indicated in the legend. The edges of the graph are
+%   the network elements.
+%
+%   INPUTS:
+%       G       - Digraph of the network structure.
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       params_plot - Structure of plotting parameters.
+%
+%   DEPENDENCIES: makeGraph
 
 %% Case Study Graph
 

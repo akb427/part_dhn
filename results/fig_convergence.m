@@ -1,6 +1,21 @@
 function fig_convergence(rslts,cntr,num,params,v_nom)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_CONVERGENCE  Plots convergence steps for troubleshooting.
+%
+%   FIG_CONVERGENCE(rslts,cntr,num,params,v_nom)
+%
+%   DESCRIPTION:
+%   Shows subsystem behavior as the system iterates to nash equilibrium.
+%   Shows mass flow rate, friction coefficients, valve positions, costs,
+%   solver status, and pressures.
+%
+%   INPUTS:
+%       rslts   - Structure of problem results
+%       cntr    - Number of iterations completed
+%       num     - Structure of numeric problem specifications.
+%       params  - Structure of problem parameters.
+%       v_nom   - Vector of nominal results (optional)
+%
+%   SEE ALSO: solve_comm
 
 %% Zeta U
 figure('Name','zeta_u')

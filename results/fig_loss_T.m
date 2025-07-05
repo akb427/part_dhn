@@ -1,6 +1,26 @@
 function v = fig_loss_T(G, params, elems, params_plot, v_sim_cen, v_sim_olm, v_sim_b)
-%UNTITLED7 Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_LOSS_T  Combines problem results and plots temperatures and losses.
+%
+%   v = FIG_LOSS_T(G, params, elems, params_plot, v_sim_cen, v_sim_olm, v_sim_b)
+%
+%   DESCRIPTION:
+%   Combines the 3 simulation results into one cell array to be used in
+%   further plotting. Calcualtes the total unweighted losses for each case,
+%   along with the return temperature. Plots time varying losses, the
+%   integral of losses, and the return temperatures.
+%
+%   INPUTS:
+%       G       - Digraph of the network structure.
+%       params  - Structure of problem parameters.
+%       elems   - Structure of categorized element.
+%       params_plot - Structure of plotting parameters.
+%       v_sim_cen   - Structure of results from centralized case.
+%       v_sim_olm   - Structure of results from olm case.
+%       v_sim_b     - Structure of results from baseline case.
+%
+%   OUTPUTS:
+%       v - Strucutre of combined results from different simulations
+
 %% Combine Data
 v = cell(1,params_plot.num_pbl);
 

@@ -1,7 +1,18 @@
 function fig_flow(num,elems,params_plot,v)
-%UNTITLED4 Summary of this function goes here
-%   Detailed explanation goes here
-
+%FIG_FLOW  Plots comparison flow rates.
+%
+%   FIG_FLOW(num,elems,params_plot,v)
+%
+%   DESCRIPTION:
+%   Plots comparison of flow rates between different problems. One set of
+%   figures for plant mass flow and bypass flow (commented out), and for
+%   user mass flows.
+%
+%   INPUTS:
+%       num         - Structure of numeric problem specifications.
+%       elems       - Structure of categorized element.
+%       params_plot - Structure of plotting parameters.
+%       v           - Strucutre of results from different simulations
 
 %% Combine Mass Flow Rates
 for idx_pbl = 1:params_plot.num_pbl

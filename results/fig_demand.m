@@ -1,6 +1,17 @@
 function fig_demand(params,num,elems,params_plot)
-%FIG_DEMAND Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_DEMAND  Plot of all user demands.
+%
+%   [out1, out2, ...] = FUNCTION_NAME(in1, in2, ...)
+%
+%   DESCRIPTION:
+%   Plot of all user demands in a single figure. Legend shows user edge
+%   numbers.
+%
+%   INPUTS:
+%       params      - Structure of problem parameters.
+%       num         - Structure of numeric problem specifications.
+%       elems       - Structure of categorized element.
+%       params_plot - Structure of plotting parameters.
 
 %% Timing
 

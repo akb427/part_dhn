@@ -1,5 +1,31 @@
 function fig_olm(data, rslt_b, params_plot, is_save)
-
+%FIG_OLM  One-line summary of what the function does.
+%
+%   FIG_OLM(data, rslt_b, params_plot, is_save)
+%
+%   DESCRIPTION:
+%   Briefly explain the purpose of the function, what it computes, or how it
+%   fits into the overall workflow. Mention any important assumptions or side
+%   effects (e.g., plotting, modifying global variables, saving files).
+%
+%   INPUTS:
+%       in1  - Description of input 1 (type, format, units if applicable)
+%       in2  - Description of input 2
+%       ...  - Additional inputs as needed
+%
+%   OUTPUTS:
+%       out1 - Description of output 1 (what it represents)
+%       out2 - Description of output 2
+%       ...  - Additional outputs as needed
+%
+%   EXAMPLE USAGE:
+%       [best_part, results] = my_partition_solver(G, params);
+%
+%   DEPENDENCIES:
+%       List other custom functions this function calls, if any.
+%
+%   SEE ALSO:
+%       RelatedFunction1, RelatedFunction2
 %% Found partitons
 
 % OLM
@@ -7,11 +33,7 @@ sz_best = data.max_sz(data.idx_best_all);
 c_best = data.cost(data.idx_best_all);
 iter_best = data.iter(data.idx_best_all);
 
-
 %% Plot Iterations
-
-%figure('Name','Conv Cost','Position',params_plot.pos)
-%tiledlayout(2,5,TileSpacing='compact');
 
 % Plot data by max size
 for idx_sz = min(data.max_sz_conv):max(data.max_sz_conv)

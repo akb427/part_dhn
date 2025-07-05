@@ -1,6 +1,20 @@
 function fig_graph_ln(G,elems,num,params_plot)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_GRAPH_LN  Plots the DHN line graph with node sets highlighted.
+%
+%   FIG_GRAPH_LN(G,elems,num,params_plot)
+%
+%   DESCRIPTION:
+%   Plot the DHN described by G, highlighting the feeding, return, bypass,
+%   and user nodes, as indicated in the legend. The nodes of the graph are
+%   the network elements.
+%
+%   INPUTS:
+%       G       - Digraph of the network linegraph.
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       params_plot - Structure of plotting parameters.
+%
+%   DEPENDENCIES: makeGraph_ln
 
 %% Case Study Graph
 
