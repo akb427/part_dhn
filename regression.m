@@ -2,10 +2,12 @@ clc, clear, close all
 %% Load Data
 
 pth = pwd;
-load('ws_03_18','num','w_olm')
+load('sim_4user_params','num','w_olm')
 load(pth+append(filesep,"rslts_curr.mat"),'rslt')
-[rslt,data] = convergence_stats(rslt,1);
-close all
+% trim data
+idx_slv = ~cellfun(@isempty,rslt.cost);
+rslt.cost = rslt.cost(idx_slv);
+rslt.cand = rslt.cand(idx_slv);
 
 %% Prepare Data
 n_part = size(rslt.cand,2);
@@ -115,7 +117,7 @@ fig_confusion(val,yfit)
 fig_ROC(vertcat(val{:}),vertcat(yfit{:}), vertcat(scores{:}))
 %span_classifier(rslt,n_cand,n_comm);
 
-load("cen_sim");
+load("cen_sim2");
 
 [~, data_og] = convergence_stats(rslt,cen_sim(1).cost);
 [~, data_ml] = convergence_stats(rslt_ml,cen_sim(1).cost);
