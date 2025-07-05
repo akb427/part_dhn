@@ -1,6 +1,16 @@
 function fig_ROC(val,yfit,scores)
-%UNTITLED7 Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_ROC  Plot Receiver Operating Characteristic (ROC) curve for
+%classifier.
+%
+%   FIG_ROC(val,yfit,scores)
+%
+%   DESCRIPTION:
+%   Plot Receiver Operating Characteristic (ROC) curve for classifier.
+%
+%   INPUTS:
+%       val     - Cell of validation data tables
+%       yfit    - Cell of predicted convergence values
+%       scores  - Cell of scores from classifier
 
 %% Get Values
 

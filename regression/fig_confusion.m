@@ -1,8 +1,16 @@
 function fig_confusion(val,yfit)
-%UNTITLED4 Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_CONFUSION  Plot confusion matrices for each level of paritioning.
+%
+%   FIG_ROC(val,yfit,scores)
+%
+%   DESCRIPTION:
+%   Plot confusion matrices for each level of paritioning.
+%
+%   INPUTS:
+%       val     - Cell of validation data tables
+%       yfit    - Cell of predicted convergence values
 
-%%
+%% Calculate and plot confusion matrices
 n_part = size(val,2);
 
 figure('Name','Confusion')

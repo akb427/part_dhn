@@ -1,6 +1,19 @@
 function compare_convergence(data1,data2,rslt1, rslt2, c_cen)
-%UNTITLED10 Summary of this function goes here
-%   Detailed explanation goes here
+%COMPARE_CONVERGENCE  Compare convergence rates between 2 solution sets.
+%
+%   COMPARE_CONVERGENCE(data1,data2,rslt1, rslt2, c_cen)
+%
+%   DESCRIPTION:
+%   Plot a bar graph showing the number of partitions explored by level of
+%   partitioning and a stacked bar chart comparing the percentage converged
+%   split by number of partitions for each of two cases.
+%
+%   INPUTS:
+%       data1  - Stuture of statistics about first solution method.
+%       data2  - Stuture of statistics about second solution method.
+%       rslt1  - Structure of cand and costs for first solution method.
+%       rslt2  - Structure of cand and costs for first solution method.
+%       c_cen  - Centralized cost for normalization. 
 
 %% Prepare Data
 n_pbl = 2;
@@ -36,67 +49,6 @@ box on; grid on;
 for idx_pbl = 1:n_pbl
     b(idx_pbl).Labels = n_solved{idx_pbl};
 end
-
-%% Plot Convergence rate - pie
-% clr_green = [0.4667 0.6745 0.1882;...
-% 0.5490 0.7882 0.2314;...
-% 0.7294 0.8745 0.5373;...
-% 0.3255 0.4706 0.1333;...
-% 0.1961 0.2824 0.0784];
-% 
-% clr_red = [0.8510 0.3255 0.0980;...
-% 0.9294 0.5608 0.3961;...
-% 0.9529 0.7020 0.5922;...
-% 0.6196 0.2392 0.0706;...
-% 0.4157 0.1608 0.0471];
-% 
-% clr = [clr_red(1:max_size-1,:); clr_green(1:max_size-1,:)];
-% ttl_list = {'Original','Learning-enhanced'};
-% 
-% figure('Name','Convergence','Position',[240,850,1450,725]);
-% tiledlayout(1,n_pbl,'TileSpacing','tight');
-% for idx_pbl = 1:n_pbl
-%     nexttile;
-%     n_conv = n_solved_conv{idx_pbl};
-%     if idx_pbl == 1
-%         n_conv(end-2) = n_conv(end-2)+n_conv(end-1)+n_conv(end);
-%         n_conv(end) = [];
-%         n_conv(end) = [];
-%         n_nconv = n_solved{idx_pbl}-n_solved_conv{idx_pbl};
-% 
-%         labels = string([2:max_size 2:max_size-3])+"-Cut";
-%         labels = [labels string(max_size-2)+","+string(max_size-1)+","+string(max_size)+"-Cut"];
-%     else
-%         n_conv(end-1) = n_conv(end-1)+n_conv(end);
-%         n_conv(end) = [];
-%         n_nconv = n_solved{idx_pbl}-n_solved_conv{idx_pbl};
-% 
-%         labels = string([2:max_size 2:max_size-2]+"-Cut");
-%         labels = [labels string(max_size-1)+","+string(max_size)+"-Cut"];
-%     end
-% 
-%     % Pie chart
-%     p = donutchart([n_nconv; n_conv], labels);
-% 
-%     % Pie chart settings
-%     p.ColorOrder = clr;
-%     p.LabelStyle = "name";
-%     p.FaceAlpha = 1;
-%     p.FontSize = ft;
-%     p.FontName = "Times";
-%     title(ttl_list{idx_pbl});
-% end
-% ax_dummy = axes('Visible', 'off', 'Position', [0 0 1 1]);
-% 
-% % Dummy handles for red and green
-% h_red = patch(NaN, NaN, [0.8 0.2 0.2], 'DisplayName', 'Unconverged', 'Parent', ax_dummy);
-% h_green = patch(NaN, NaN, [0.2 0.6 0.2], 'DisplayName', 'Converged', 'Parent', ax_dummy);
-% 
-% % Create the legend and attach it to the tiledlayout
-% lgd = legend([h_red, h_green], 'Orientation', 'horizontal', 'Interpreter', 'latex','Location','South');
-% %lgd.Layout.Tile = 'south';  % Attach to bottom of tiled layout
-% lgd.Box = 'off';
-% lgd.FontSize = ft;
 
 %% Plot Convergence rate - stacked bar
 clr_green = [0.4667 0.6745 0.1882;...
