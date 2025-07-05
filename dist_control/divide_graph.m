@@ -1,6 +1,29 @@
 function [sg,se,sn,sp] = divide_graph(idx_sg,G,part,elems,num,params)
 %DIVIDE_GRAPH splits a graph according to part and labels appropriate
-%elements. Used in subgraph_params
+%elements.
+%
+%   [sg,se,sn,sp] = DIVIDE_GRAPH(idx_sg,G,part,elems,num,params)
+%
+%   DESCRIPTION:
+%   Finds the description of the subsystem in the considered partition of
+%   the overall system. Gets information about local and overal indexing to
+%   be used in the distributed control problem.
+%
+%   INPUTS:
+%       idx_sg  - Number of subgraph being considered.
+%       G       - Digraph of the network structure.
+%       part    - Vector of elements groups.
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       params  - Structure of problem parameters.
+%
+%   OUTPUTS:
+%       sg  - Digraph of subsytem elements.
+%       se  - Structure of subsystem elements.
+%       sn  - Structure of subsystem numeric specifications
+%       sp  - Structure of subsystem parameters.
+%
+%   SEE ALSO: subgraph_params
 
 %% Create Identity Indicator
 
@@ -48,7 +71,6 @@ end
 
 [~,se.idx.user] = ismember(se.user,elems.user);
 [~,se.idx.nonuser] = ismember(se.nonuser,elems.nonuser);
-
 
 %% Number of elements
 sn = num;
