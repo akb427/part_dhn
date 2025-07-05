@@ -1,13 +1,25 @@
-function [M_sim] = simulate_flow_tfn(num,elems,params)
-%SIMULATE_FLOW Calculate mass flow rate and pressure losses following
-% given all zeta values
-%   G: graph of network
-%   params: parameters of network
-%   n: structure of sizes
-%   given mI, dP 
+function [Msim] = simulate_flow_tfn(num,elems,params)
+%SIMULATE_FLOW_TFN  Creates function to calculate nominal demand operation.
+%
+%   [Msim] = SIMULATE_FLOW_TFN(num,elems,params)
+%
+%   DESCRIPTION:
+%   Uses network description to create simulation casadi function,
+%   used to solve for network behavior given valve frictions and initial 
+%   mass flow rate.
+%
+%   INPUTS:
+%       num     - Structure containing numeric problem specifications.
+%       elems   - Structure containing categorized element.
+%       params  - Structure of problem parameters.
+%
+%   OUTPUTS:
+%       Msim    - Casadi function to simulate network behavior
+%
+%   DEPENDENCIES: graph2ss_cen
+%
+%   REQUIREMENTS: CasADi
 
- %#ok<*CHAIN>   % This is okay in CASADI
- %#ok<*FNDSB>   % This is nessecary in CASADI
 %% Setup Problem 
 import casadi.*
 opti_sim = casadi.Opti();
@@ -107,7 +119,7 @@ outpt_name = {'dPe','Pn','mdot_e','T','Qp','cost_Q','intQ','cost_SOC'};
 inpt = [inpt {mdot_e,dPe,Pn}];
 inpt_name = [inpt_name {'i_mdot_e','i_dPe','i_Pn'}];
 
-M_sim = opti_sim.to_function('M',inpt,outpt,inpt_name,outpt_name);
+Msim = opti_sim.to_function('M',inpt,outpt,inpt_name,outpt_name);
 
 
 

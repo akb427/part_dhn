@@ -1,9 +1,27 @@
 function [v_cen] = solve_cen_flex(num,elems,params,init)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+%SOLVE_CEN_FLEX  Solve the centralized MPC problem for the DHN.
+%
+%   [v_cen] = SOLVE_CEN_FLEX(num,elems,params,init)
+%
+%   DESCRIPTION:
+%   Solves the mpc problem for the centralized case using building
+%   flexibility. Loops over num.horizon iterations, solving with a num.seg
+%   timestep. 
+%
+%   INPUTS:
+%       num     - Structure containing numeric problem specifications.
+%       elems   - Structure containing categorized element.
+%       params  - Structure of problem parameters.
+%       init    - Strucutre of initial conditions for the problem.
+%
+%   OUTPUTS:
+%       v_cen   - Strucutre of centralized step solutions.
+%
+%   DEPENDENCIES:
+%       opt_cen_tfn
 
 %% Create Function
-M_cen = opt_cen_tfn(num,elems,params);
+Mcen = opt_cen_tfn(num,elems,params);
 
 v_cen(num.horizon) = struct('Pn',0,'Qp',0,'T',0,'cost_Q',0,'cost_SOC',0,'cost',0,'dPe',0,'valve',0,'zeta_u',0,'intQ',0,'mdot_e',0,'mdot_0',0,'status',0,'valid',0,'lam_g',0);
 
@@ -32,9 +50,9 @@ for idx_horizon = 1:num.horizon
         params_step.Cap_l = params.Cap_l(:,idx_i_T);
 
         % Run Simulation
-        vt = M_cen.call(params_step);
-        vt.status = M_cen.stats.return_status;
-        vt.valid = M_cen.stats.success;
+        vt = Mcen.call(params_step);
+        vt.status = Mcen.stats.return_status;
+        vt.valid = Mcen.stats.success;
         v_cen(idx_horizon) = structfun(@full,vt,'UniformOutput',false);
         
         while ~v_cen(idx_horizon).valid
@@ -44,13 +62,10 @@ for idx_horizon = 1:num.horizon
             params_step.i_mdot_0 = v_cen(idx_horizon).mdot_0;
             params_step.i_Pn = v_cen(idx_horizon).Pn;
             params_step.i_lam_g = v_cen(idx_horizon).lam_g;
-            vt = M_cen.call(params_step);
-            vt.status = M_cen.stats.return_status;
-            vt.valid = M_cen.stats.success;
+            vt = Mcen.call(params_step);
+            vt.status = Mcen.stats.return_status;
+            vt.valid = Mcen.stats.success;
             v_cen(idx_horizon) = structfun(@full,vt,'UniformOutput',false);
-            % if ~v_cen(idx_horizon).valid
-            %     warning('Did not converge')
-            % end
         end
 
         % initial values for next optimization

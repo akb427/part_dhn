@@ -1,6 +1,25 @@
 function [v_nom] = solve_cen_nom(num,elems,params,init)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+%SOLVE_CEN_FLEX  Solve the centralized MPC problem meeting nominal demands.
+%
+%   [v_cen] = SOLVE_CEN_FLEX(num,elems,params,init)
+%
+%   DESCRIPTION:
+%   Solves the mpc problem for the centralized case without building
+%   flexibility, only meeting nominal demands. Loops over num.horizon 
+%   iterations, solving with a num.seg timestep. Tries multiple tolerances
+%   to help with problem convergence.
+%
+%   INPUTS:
+%       num     - Structure containing numeric problem specifications.
+%       elems   - Structure containing categorized element.
+%       params  - Structure of problem parameters.
+%       init    - Strucutre of initial conditions for the problem.
+%
+%   OUTPUTS:
+%       v_nom   - Strucutre of centralized nominal step solutions.
+%
+%   DEPENDENCIES:
+%       nom_cen_tfn
 
 %% Create Function
 M_cen = cell(1,3);

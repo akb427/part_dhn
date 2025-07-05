@@ -1,12 +1,25 @@
 function [Ad,Bd] = graph2ss_cen(params,num,elems,mdot_e,ismat)
-%GRAPH2SS Convert graph, parameters and mass flow rates to state space
-%matrices
-%   G: graph of network
-%   params: network params
-%   n: strucutre to store size elements
-%   mdot_e: mass flow rate in edges
-%   ismat: true if no casadi variables are to be used
-%   DOESNT WORK for cs=3
+%GRAPH2SS_CEN Convert network description to discrete state space matrices
+%
+%   [Ad,Bd] = GRAPH2SS_CEN(params,num,elems,mdot_e,ismat)
+%
+%   DESCRIPTION:
+%   Converts newtork information into state space matrices, containing
+%   current mass flow rate in the pipes. Works for both a numeric matrix
+%   (ismat=1) and casadi variables (ismat=2).
+%
+%   INPUTS:
+%       params  - Structure of problem parameters.
+%       num     - Structure containing numeric problem specifications.
+%       elems   - Structure containing categorized element.
+%       mdot_e  - Vector of mass flow rate in edges.
+%       ismat   - Numeric indicator of casadi or numeric.
+%
+%   OUTPUTS:
+%       Ad      - Discrete time state transition matrix
+%       Bd      - Discrete time state-input matrix
+%
+%   REQUIREMENTS: CasADi (if ismat=2)
 
 %#ok<*FNDSB> % needed in casadi
 import casadi.*

@@ -1,10 +1,23 @@
 function [Mnom] = nom_cen_tfn(num,elems,params)
-%OPTIMIZE_FLOW Calculate mass flow rate and pressure losses following
-% nominal demand
-%   G: graph of network
-%   params: parameters of network
-%   n: structure of sizes
-%   given mI, dP 
+%NOM_CEN_TFN  Creates function to calculate nominal demand operation.
+%
+%   [Mnom] = NOM_CEN_TFN(num,elems,params)
+%
+%   DESCRIPTION:
+%   Uses network description to create nominal flow case casadi function,
+%   used to solve for network behavior in the nominal case.
+%
+%   INPUTS:
+%       num     - Structure containing numeric problem specifications.
+%       elems   - Structure containing categorized element.
+%       params  - Structure of problem parameters.
+%
+%   OUTPUTS:
+%       Mnom    - Casadi function to solve nominal problem
+%
+%   DEPENDENCIES: graph2ss_cen
+%
+%   REQUIREMENTS: CasADi
 
 %% Setup Problem 
 import casadi.*
@@ -89,15 +102,12 @@ for i = 1:num.seg_T
     end
 end
 
-%opti_flow.subject_to(-30<T(:)<100);
-
 %% Solve zeta for minimum
 
 opti_flow.minimize(cost_Q);
 
 opti_flow.solver('ipopt',struct('print_time',0),struct('print_level',0,'tol',params.tol,'acceptable_tol',params.accept_tol,'dual_inf_tol',10,'max_iter',params.max_iter,'hessian_approximation','exact'))
 %opti_flow.solver('ipopt',struct(),struct('tol', 1e-2,'max_iter', 100000))
-
 
 inpt = {T_ic,Qb,T_amb,T_0,mdot_e,valve,dPe,mdot_0,Pn,opti_flow.lam_g};
 inpt_name = {'T_ic','Qb','T_amb','T_0','i_mdot_e','i_valve','i_dPe','i_mdot_0','i_Pn','i_lam_g'};

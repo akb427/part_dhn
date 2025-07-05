@@ -1,12 +1,24 @@
 function [Mcen] = opt_cen_tfn(num,elems,params)
-%CEN_FLEX Centralized optimal solution using flexibility
-%   G: graph of network
-%   params: parameters of network
-%   n: structure of sizes
-%   given mI, dP 
+%OPT_CEN_TFN  Creates function to calculate optimal network operation.
+%
+%   [Mcen] = OPT_CEN_TFN(num,elems,params)
+%
+%   DESCRIPTION:
+%   Uses network description to create optimal flow case casadi function,
+%   used to solve for network behavior in the loss reducing case.
+%
+%   INPUTS:
+%       num     - Structure containing numeric problem specifications.
+%       elems   - Structure containing categorized element.
+%       params  - Structure of problem parameters.
+%
+%   OUTPUTS:
+%       Mcen    - Casadi function to solve optimal control problem
+%
+%   DEPENDENCIES: graph2ss_cen
+%
+%   REQUIREMENTS: CasADi
 
- %#ok<*CHAIN>   % This is okay in CASADI
- %#ok<*FNDSB>   % This is nessecary in CASADI
 %% Setup Problem 
 import casadi.*
 opti_flow = casadi.Opti();
