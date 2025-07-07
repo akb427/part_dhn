@@ -1,10 +1,32 @@
 function [c_vec,v,v_sim] = find_olm_sim(part,G,elems,num,params,init,w,sv_name)
-%FIND_OLM Find the OLM for a specific partition
-%   part: partition to be explored
-%   init: initial conditions to be used for optimization
-%   w: weighting terms
-%   c_vec: cost vector of form [total, min size, solve, is violation, iter, max size]
-
+%FIND_OLM_SIM  Find the OLM for a specific partition while allowing for
+%non-convergence.
+%
+%   [c_vec,v,v_sim] = FIND_OLM_SIM(part,G,elems,num,params,init,w,sv_name)
+%
+%   DESCRIPTION:
+%   Coordinates the solving of the dmpc problem of a specific partition
+%   while allowing for nonconvergence. Either saves the results or outputs
+%   a vector of costs and simulation results.
+%
+%   INPUTS:
+%       part    - Vector of partition assignments
+%       G       - Digraph of network
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       params  - Structure of problem parameters.
+%       init    - Structure of initial guesses for olm calculation.
+%       w       - Structure of convergence information.
+%       sv_name - String of file save location.
+%
+%   OUTPUTS:
+%       c_vec   - Vector of costs of form
+%                 [total, min size, solve, is violation, iter, max size]
+%       v       - Structure of distributed optimization results.
+%       v_sim   - Structure of simulation results.
+%
+%   DEPENDENCIES: comm_graph, dist_control_sim, opt_comm_tfn,
+%   subgraph_params
 
 %% Partitioned System Parameters
 

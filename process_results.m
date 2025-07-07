@@ -39,10 +39,10 @@ params_sim.max_iter = 3000;
 params_sim.max_iter_slack = 4000;
 
 % Solve 
-% cen_sim = solve_cen_flex(num_sim,elems,params_sim,init);
-% [c_b,v_b,v_sim_b] = find_olm_sim(part_wG,G,elems,num_sim,params_sim,init,w_olm);
-% [v_sim_cen,c_cen] = truncate_cen(v_sim_b,cen_sim,num_sim,params_sim,elems);
-% [c_olm,v_olm,v_sim_olm] = find_olm_sim(part_olm,G,elems,num_sim,params_sim,init,w_olm);
+cen_sim = solve_cen_flex(num_sim,elems,params_sim,init);
+[c_b,v_b,v_sim_b] = find_olm_sim(part_wG,G,elems,num_sim,params_sim,init,w_olm);
+[v_sim_cen,c_cen] = truncate_cen(v_sim_b,cen_sim,num_sim,params_sim,elems);
+[c_olm,v_olm,v_sim_olm] = find_olm_sim(part_olm,G,elems,num_sim,params_sim,init,w_olm);
 
 %% Load
 load("cen_sim2");

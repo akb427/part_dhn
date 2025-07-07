@@ -1,5 +1,35 @@
 function [v_sim,v] = dist_control_sim(M,Gconv,num,elems,params,snum,selems,sparams,init,w)
-%COMM_FLEX solve the communication based control of a partitioned DHN
+%DIST_CONTROL_SIM  Coordinates the solving of the dmpc problem.
+%
+%   [v_sim,v] = DIST_CONTROL_SIM(M,Gconv,num,elems,params,snum,selems,sparams,init,w)
+%
+%   DESCRIPTION:
+%   Loops through the receding horizon of the mpc problem, solving the
+%   problem in a distributed manor at each step. Updates the inital
+%   conditions and guesses at each step. After the control problem is
+%   solved, the network flow is simulated using the solutions found in the
+%   distributed control problem to get the overall network behavior. 
+%   Uses the closest to converged solution if the distributed problem does
+%   not converge.
+%
+%   INPUTS:
+%       M       - CasADi functions for optimizing each subsystem.
+%       Gconv   - Graph of convergence hierarchy.
+%       num     - Structure of numeric problem specifications.
+%       elems   - Structure of categorized element.
+%       params  - Structure of problem parameters.
+%       snum    - Structures of subsystem numeric problem specifications.
+%       selems  - Structures of subsystem categorized elements.
+%       sparams - Structures of subsystem problem parameters.
+%       init    - Structure of initial conditions for problem.
+%       w       - Structure of convergence information.
+%
+%   OUTPUTS:
+%       v_sim   - Structure of simulation results.
+%       v       - Structure of distributed optimization results.
+%
+%   DEPENDENCIES: simulate_flow_tfn, parse_ig, parse_timestep,
+%   simulate_flow, solve_comm_sim, update_ig_ext.
 
 %% Problem setup 
 % Simulation Function

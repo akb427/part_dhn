@@ -1,6 +1,27 @@
 function [rslts] = solve_unconverged_sim(isconverge,sparams_step,Ma, selems, idx_P_slack)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+%SOLVE_UNCONVERGED_SIM  solves dmpc problem for unconverged subsystems.
+%
+%   [rslts] = SOLVE_UNCONVERGED_SIM(isconverge,sparams_step, Ma, selems, idx_P_slack)
+%
+%   DESCRIPTION:
+%   Solves dmpc problem for unconverged subsystems using a parallel loop.
+%   Removes already converged subsystems and tries to resolve unconverged
+%   subsytems. Resolves failed CasADi solves at most six times. 
+%
+%   INPUTS:
+%       isconverged     - Vector of binary indicators of convergence.
+%       sparams_step    - Structures of subsystem parameters at this step.
+%       Ma              - CasADi functions for optimizing each subsystem.
+%       selems          - Structure containing categorized subsystem element.
+%       idx_P_slack     - Index of if slack variables have been used in
+%                         each subsystem.
+%
+%   OUTPUTS:
+%       rslts           - Structures of updated subsystem step solutions.
+%
+%   DEPENDENCIES: update_ig
+%
+%   REQUIREMENTS: Parallel Computing Toolbox
 
 %% Get unconverged problems
 num_p = sum(~isconverge);

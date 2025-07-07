@@ -9,6 +9,7 @@ function [v_sim,v] = dist_control(M,Gconv,num,elems,params,snum,selems,sparams,i
 %   conditions and guesses at each step. After the control problem is
 %   solved, the network flow is simulated using the solutions found in the
 %   distributed control problem to get the overall network behavior. 
+%   Breaks if the distributed problem does not converge. 
 %
 %   INPUTS:
 %       M       - CasADi functions for optimizing each subsystem.
