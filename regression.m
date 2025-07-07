@@ -1,3 +1,18 @@
+%REGRESSION  Uses regression to predict convergence of solved bnb problem.
+%
+%   DESCRIPTION:
+%   Uses regression to predict convergence of solved bnb problem. Performs
+%   a sensititivy analysis of the regression tool and outputs the
+%   statistics over all solved partitions. Uses the developed regression
+%   tool to perform a reduced bnb search. Plots results for publication
+%   using params_plot from process_results.
+%
+%   DEPENDENCIES: bnb_regression, compare_convergence, convergence_stats,
+%   dec2part, fig_confusion, fig_partialDependence, fig_ROC, get_commlink.
+%
+%   SEE ALSO: generate_problem, partition_system, process results.
+
+%%
 clc, clear, close all
 %% Load Data
 

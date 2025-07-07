@@ -1,4 +1,15 @@
+%PARTITION_SYSTEM  Runs the system partitioning problem.
+%
+%   DESCRIPTION:
+%   Runner for the system partitioning problem. Loads in the problem
+%   parameters, and adds the nessecary paths. It solves the bnb or split
+%   bnb algorithm (if using a supercomputer).
+%
+%   DEPENDENCIES: bnb, bnb_split
+%
+%   SEE ALSO: generate_problem.
 
+%%
 clc, clear, close all
 
 %% Load Problem information
@@ -34,18 +45,3 @@ idx_com = 1;
 % c_i = find_olm(cand_bin,G,elems,num,params,init,w_olm);
 % load("C:\Users\akb42\OneDrive - The Ohio State University\DistrictHeatingNetwork\Project Codes\Partitioning 3 - DHN\olm_saves\part_2_1073.mat")
 %c_i = find_olm(part,G,elems,num,params,init,w_olm);
-
-%% Depth bnb
-% clc
-% load("ws_04_10","w_olm","G","elems","num","params","init")
-% G_ln = linegraph(G,elems,num,params.pipes(:,4));
-% [part_wG] = modularity_max(G_ln);
-% part_wG = [part_wG 1];
-% init.part = part_wG;
-% init.part(part_wG==2) = 1;
-% init.part(part_wG==3) = 2;
-% init.part = init.part-1;
-% 
-% [part_olm, rslt, idx_best] = bnb_depth(w_olm,G,elems,num,params,init);
-% 
-% save('rslt_depth');

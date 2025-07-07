@@ -1,3 +1,17 @@
+%PROCESS_RESULTS  Processes the results of the partitioning problem.
+%
+%   DESCRIPTION:
+%   Processes the results of the partitioning problem. Also performs/loads
+%   the baseline and central optimization cases for comparison. Plots the
+%   results using consistent plotting settings for use in publication.
+%
+%   DEPENDENCIES: convergence_stats, fig_demand, fig_flow, fig_graph_ln,
+%   fig_graph, fig_loss_T, fig_olm2, fig_part, fig_SOE, find_olm_sim,
+%   linegraph, modularity_max, solve_cen_flex, subgraph_params,
+%   truncate_cen
+%
+%   SEE ALSO: partition_system.
+
 %% Load case study
 clc, clear, close all
 pth = pwd;
@@ -55,7 +69,7 @@ rslt_b.cost = rslt_b.c(1,3)/cen_sim(1).cost;
 rslt_b.max_sz = rslt_b.c(1,6);
 
 %% Plotting line graph
-[G_ln,elems_ln,num_ln] = linegraph2(G,elems,num);
+[G_ln,elems_ln,num_ln] = linegraph(G,elems,num,ones(1, num.edge));
 
 %% Timing parameters
 % Timing
