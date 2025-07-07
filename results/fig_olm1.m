@@ -1,6 +1,18 @@
 function fig_olm1(data,params_plot)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_OLM1  Single plot mPoA vs iterations.
+%
+%   FIG_OLM1(data, params_plot)
+%
+%   DESCRIPTION:
+%   Creates a single figure, comparing the iterations  to convergence and
+%   the modified price of anarchy to show the distribution of converging ]
+%   solution costs. Additionally includes an inset of the lowest cost 
+%   solutions. 
+%
+%   INPUTS:
+%       data        - Structure of seach statistics.
+%       params_plot - Strucutre of plotting parameters.
+
 %% Plot Iterations
 
 figure('Name','Conv Cost','Position',params_plot.pos)

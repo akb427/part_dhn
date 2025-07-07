@@ -1,4 +1,18 @@
 function fig_olm2(data, rslt_b, params_plot)
+%FIG_OLM2  Plot mPoA vs iterations, plotted by max partition size.
+%
+%   FIG_OLM2(data, rslt_b, params_plot)
+%
+%   DESCRIPTION:
+%   Creates a set of 2 figures, divided by maximum partitions size, 
+%   comparing the iterations  to convergence and the modified price of 
+%   anarchy to show the distribution of converging solution costs. Also 
+%   highlighting olm-minimizing solution and baseline case.
+%
+%   INPUTS:
+%       data        - Structure of seach statistics.
+%       rslt_b      - Structure of baseline results.
+%       params_plot - Strucutre of plotting parameters.
 
 %% Found partitons
 

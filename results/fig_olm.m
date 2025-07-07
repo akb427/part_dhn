@@ -1,31 +1,21 @@
 function fig_olm(data, rslt_b, params_plot, is_save)
-%FIG_OLM  One-line summary of what the function does.
+%FIG_OLM  Plot mPoA vs iterations, plotted by max partition size.
 %
 %   FIG_OLM(data, rslt_b, params_plot, is_save)
 %
 %   DESCRIPTION:
-%   Briefly explain the purpose of the function, what it computes, or how it
-%   fits into the overall workflow. Mention any important assumptions or side
-%   effects (e.g., plotting, modifying global variables, saving files).
+%   Creates a set of figures, divided by maximum partitions size, comparing
+%   the iterations  to convergence and the modified price of anarchy to
+%   show the distribution of converging solution costs. Also highlighting 
+%   olm-minimizing solution and baseline case. Additionally includes a 
+%   vertical figure of the lowest cost solutions. 
 %
 %   INPUTS:
-%       in1  - Description of input 1 (type, format, units if applicable)
-%       in2  - Description of input 2
-%       ...  - Additional inputs as needed
-%
-%   OUTPUTS:
-%       out1 - Description of output 1 (what it represents)
-%       out2 - Description of output 2
-%       ...  - Additional outputs as needed
-%
-%   EXAMPLE USAGE:
-%       [best_part, results] = my_partition_solver(G, params);
-%
-%   DEPENDENCIES:
-%       List other custom functions this function calls, if any.
-%
-%   SEE ALSO:
-%       RelatedFunction1, RelatedFunction2
+%       data        - Structure of seach statistics.
+%       rslt_b      - Structure of baseline results.
+%       params_plot - Strucutre of plotting parameters.
+%       is_save     - Binary indicator of saving figures.
+
 %% Found partitons
 
 % OLM
@@ -76,18 +66,13 @@ for idx_sz = min(data.max_sz_conv):max(data.max_sz_conv)
     ax.FontSize = params_plot.ft_accent;
     ax.YLim = [.99 1.3];
     ax.XLim = [1.5 20.5];
-    if any(idx_sz == [8 12 13 14])
-        ax.XLabel.String = "$c_{iter}$";
-        ax.XLabel.FontSize = params_plot.ft;
-    else
-        ax.XAxis.TickLabels={};
-    end
-    if any(idx_sz == [5 9 12])
-        ax.YLabel.String = "$c_{mPoA}$";
-        ax.YLabel.FontSize = params_plot.ft;
-    else
-        ax.YAxis.TickLabels  = {};
-    end
+
+    ax.XLabel.String = "$c_{iter}$";
+    ax.XLabel.FontSize = params_plot.ft;
+
+    ax.YLabel.String = "$c_{mPoA}$";
+    ax.YLabel.FontSize = params_plot.ft;
+
     % title("$c_{sz}$ = "+string(idx_sz))
     box on; grid on; hold off
 
@@ -108,8 +93,6 @@ for idx_sz = min(data.max_sz_conv):max(data.max_sz_conv)
     end
 
 end
-
-
 
 %% Plot of only 2 iterations
 

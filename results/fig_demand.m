@@ -1,7 +1,7 @@
 function fig_demand(params,num,elems,params_plot)
 %FIG_DEMAND  Plot of all user demands.
 %
-%   [out1, out2, ...] = FUNCTION_NAME(in1, in2, ...)
+%   FIG_DEMAND(params,num,elems,params_plot)
 %
 %   DESCRIPTION:
 %   Plot of all user demands in a single figure. Legend shows user edge
