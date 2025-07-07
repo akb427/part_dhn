@@ -46,10 +46,10 @@ params_sim.max_iter_slack = 4000;
 
 %% Load
 load("cen_sim2");
-load("base_sim2");
+load("base_sim3");
 load("olm_sim2");
 
-[rslt_b.c,rslt_b.v,rslt_b.v_sim] = find_olm(part_wG,G,elems,num,params,init,w_olm);
+% [rslt_b.c,rslt_b.v,rslt_b.v_sim] = find_olm(part_wG,G,elems,num,params,init,w_olm);
 rslt_b.iter = rslt_b.c(1,5);
 rslt_b.cost = rslt_b.c(1,3)/cen_sim(1).cost;
 rslt_b.max_sz = rslt_b.c(1,6);
@@ -129,8 +129,8 @@ params_plot.lg.ylim = [0.12,10];
 fig_olm2(data, rslt_b, params_plot)
 
 fig_graph(G,elems,num_sim, params_plot);
-[~,selems] = subgraph_params(G,part_olm,elems,num,params);
-fig_commgraph(elems,num,selems,params_plot);
+[~,selems,~,~,num,elems] = subgraph_params(G,part_olm,elems,num,params);
+%fig_commgraph(elems,num,selems,params_plot);
 fig_graph_ln(G_ln,elems_ln,num_ln,params_plot)
 
 fig_part(G,elems,num_sim,part_olm,params_plot);
