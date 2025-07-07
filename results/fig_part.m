@@ -1,6 +1,21 @@
 function fig_part(G,elems,num,part,params_plot)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_PART  Plots the DHN graph with partition highlighted.
+%
+%   FIG_PART(G,elems,num,part,params_plot)
+%
+%   DESCRIPTION:
+%   Plot the DHN described by G, highlighting the partition groups, as 
+%   indicated in the legend. The edges of the graph are the network 
+%   elements.
+%
+%   INPUTS:
+%       G       - Digraph of the network structure.
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       part    - Vector of partitioned elements
+%       params_plot - Structure of plotting parameters.
+%
+%   DEPENDENCIES: makeGraph
 
 %% Properties
 n_part = max(part);

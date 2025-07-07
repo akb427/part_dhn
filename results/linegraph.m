@@ -1,5 +1,23 @@
 function [G_ln,elem_ln,num_ln] = linegraph(G,elems,num,wp)
-%DHN_LINEGRAPH 
+%LINEGRAPH Creates the linegraph of G.
+%
+%   [G_ln,elem_ln,num_ln] = LINEGRAPH(G,elems,num,wp)
+%
+%   DESCRIPTION:
+%   Creates the linegraph of G by switching the edges to nodes.
+%   Additionally creates the element and numeric structures related to this
+%   linegraph.
+%
+%   INPUTS:
+%       G       - Graph to be converted
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       wp      - Vector of edge weights
+%
+%   OUTPUTS:
+%       G_ln    - Weighted diagraph linegraph of G
+%       elem_ln - Structure of categorized element for G_ln.
+%       num_ln  - Structure of numeric problem specifications for G_ln.
 
 %% Get Line Graph
 ne = numedges(G);

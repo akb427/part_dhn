@@ -1,6 +1,21 @@
 function [h,tv] = makeGraph_ln(G,elems,num, params_plot)
-%UNTITLED7 Summary of this function goes here
-%   Detailed explanation goes here
+%MAKEGRAPH_LN  Plots the graph.
+%
+%   [h, tv] = MAKEGRAPH_LN(G,elems,num, params_plot)
+%
+%   DESCRIPTION:
+%   Plots the network linegraph G with appropriate edge styles and node
+%   symbols. Adds the node labels manually.
+%
+%   INPUTS:
+%       G       - Digraph of the network structure.
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       params_plot - Structure of plotting parameters.
+%
+%   OUTPUTS:
+%       h   - Handle of plot.
+%       tv  - Handles of node labels.
 
 %% Plot Graph
 

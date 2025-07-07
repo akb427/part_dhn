@@ -1,6 +1,23 @@
 function [h, te, tv] = makeGraph(G,elems,num, params_plot)
-%UNTITLED7 Summary of this function goes here
-%   Detailed explanation goes here
+%MAKEGRAPH  Plots the graph.
+%
+%   [h, te, tv] = MAKEGRAPH(G,elems,num, params_plot)
+%
+%   DESCRIPTION:
+%   Plots the network graph G with appropriate edge styles and node
+%   symbols. Adds the edge and node labels manually with predefined 
+%   locations.
+%
+%   INPUTS:
+%       G       - Digraph of the network structure.
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       params_plot - Structure of plotting parameters.
+%
+%   OUTPUTS:
+%       h   - Handle of plot.
+%       te  - Handles of edge labels.
+%       tv  - Handles of node labels.
 
 %% Plot Graph
 
@@ -21,7 +38,6 @@ v_cold = unique(G.Edges.EndNodes(elems.cold,:));
 mrkrs = repelem(params_plot.mrkr(1),num.node);
 mrkrs(v_cold) = params_plot.mrkr(2);
 h.Marker = mrkrs;
-
 
 % Add Edgel Labels
 offset_x = [.15 -.65 .15 1.2 .15 .7 .2 -.25 -.35 -.35 -.35 .25 -.28 1.7];

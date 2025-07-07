@@ -1,6 +1,19 @@
 function fig_SOE(elems,num,params_plot,v)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%FIG_SOE  Plots used state of energy by building.
+%
+%   FIG_SOE(elems,num,params_plot,v)
+%
+%   DESCRIPTION:
+%   Plots used state of energy by building, demonstrating the difference
+%   between the three simulation cases.
+%
+%   INPUTS:
+%       elems   - Structure of categorized element.
+%       num     - Structure of numeric problem specifications.
+%       params_plot - Structure of plotting parameters
+%       v       - Strucutre of combined results
+%
+%   SEE ALSO: fig_loss_T
 
 %% Plotting
 ttl = "e_"+string(elems.user);

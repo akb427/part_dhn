@@ -1,9 +1,28 @@
 function [v_sim_cen,c_cen] = truncate_cen(v_sim_cen,cen_sim,num,params,elems)
-%TRUNCATE_CEN In the centralized optimization case, a seperate simulation
-%step is not performed as the centralized solution is exact. Therefor the
-%output data is the entire prediction horizon. This function truncates that
-%data to just the simulation horizon.
+%TRUNCATE_CEN Truncate solution to appropriate form
+%
+%   [v_sim_cen,c_cen] = TRUNCATE_CEN(v_sim_cen,cen_sim,num,params,elems)
+%
+%   DESCRIPTION:
+%   In the centralized optimization case, a seperate simulation
+%   step is not performed as the centralized solution is exact. Therefore
+%   the output data is the entire prediction horizon. This function 
+%   truncates that data to just the simulation horizon.
+%
+%   INPUTS:
+%       v_sim_cen   - Structure to format the results.
+%       cen_sim     - Structure of results to be truncated.
+%       num         - Structure of numeric problem specifications.
+%       params      - Structure of problem parameters.
+%       elems       - Structure of categorized element.
+%
+%   OUTPUTS:
+%       v_sim_cen   - Structure of truncated simulation results.
+%       c_cen       - Numeric cost of centralized solution.
+%
+%   SEE ALSO: solve_cen_flex
 
+%% Perform truncation
 for idx_horizon = 1:num.horizon
     v_sim_cen(idx_horizon).status = cen_sim(idx_horizon).status;
     v_sim_cen(idx_horizon).valid = cen_sim(idx_horizon).valid;
