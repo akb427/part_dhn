@@ -1,12 +1,36 @@
 function [G,num,elems,params,temp_prof] = generate_params4(G,num,elems,params)
-%GENERATE_PARAMS_FLEX Generate parameters for network components, where the
-%flexibility envelope is time dependent
-%   G: Graph of network
-%   n: structure of sizes
-%   params: parameter of network components
-%   params.pipes: [L D zetaB zetaF mdot Lbypass Dbypass mdotbypass]
-%   params.users: [mu Q Ls1 Ls2 Ls3 Ds1 Ds2 Ds3]
-
+%GENERATE_PARAMS4  Generate parameters for network components.
+%
+%   [G,num,elems,params,temp_prof] = GENERATE_PARAMS4(G,num,elems,params)
+%
+%   DESCRIPTION:
+%   Generate parameters for network components in the four user case study. 
+%   Allows for time-varying flexibility envelopes. Format of params.pipes:
+%   [L D zetaB zetaF mdot Lbypass Dbypass mdotbypass]. Format of
+%   params.users: [mu Q Ls1 Ls2 Ls3 Ds1 Ds2 Ds3]. Loads heat demand and
+%   temperature profiles from file. Some network parameters are hard coded.
+%
+%   INPUTS:
+%       G       - Digraph of the network structure.
+%       num     - Structure of numeric problem specifications.
+%       elems   - Structure of categorized element.
+%       params  - Structure of problem parameters.
+%
+%   OUTPUTS:
+%       G       - Digraph of the network structure.
+%       num     - Structure of numeric problem specifications.
+%       elems   - Structure of categorized element.
+%       params  - Structure of problem parameters.
+%       temp_prof   - Structure of flexibility profiles.
+%
+%   EXAMPLE USAGE:
+%       [best_part, results] = my_partition_solver(G, params);
+%
+%   DEPENDENCIES:
+%       List other custom functions this function calls, if any.
+%
+%   SEE ALSO:
+%       RelatedFunction1, RelatedFunction2
 
 %% Path
 path = pwd;
