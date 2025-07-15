@@ -53,10 +53,10 @@ params_sim.max_iter = 3000;
 params_sim.max_iter_slack = 4000;
 
 % Solve 
-cen_sim = solve_cen_flex(num_sim,elems,params_sim,init);
-[c_b,v_b,v_sim_b] = find_olm_sim(part_wG,G,elems,num_sim,params_sim,init,w_olm);
-[v_sim_cen,c_cen] = truncate_cen(v_sim_b,cen_sim,num_sim,params_sim,elems);
-[c_olm,v_olm,v_sim_olm] = find_olm_sim(part_olm,G,elems,num_sim,params_sim,init,w_olm);
+% cen_sim = solve_cen_flex(num_sim,elems,params_sim,init);
+% [c_b,v_b,v_sim_b] = find_olm_sim(part_wG,G,elems,num_sim,params_sim,init,w_olm);
+% [v_sim_cen,c_cen] = truncate_cen(v_sim_b,cen_sim,num_sim,params_sim,elems);
+% [c_olm,v_olm,v_sim_olm] = find_olm_sim(part_olm,G,elems,num_sim,params_sim,init,w_olm);
 
 %% Load
 load("cen_sim2");
@@ -136,6 +136,9 @@ params_plot.lg.v_num = [elems_ln.user elems_ln.root elems_ln.term];
 params_plot.lg.node_label = [elems_ln.user "$v_{0^-}$" "$v_{0^+}$"];
 params_plot.lg.xlim  = [0.55,6.24];
 params_plot.lg.ylim = [0.12,10];
+
+%% Save plotting params
+save('params_plot','params_plot');
 
 %% Plot results
 
