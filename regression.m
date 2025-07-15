@@ -118,7 +118,7 @@ mdl.accuracy_all  = (c(1,1)+c(2,2))/sum(c,'all');
 
 %% Regression BnB
 
-[part_ml, rslt_ml, idx_best_ml] = bnb_regression(rslt,yfit,n_part,w_olm);
+[part_ml, rslt_ml,idx_best_ml, idx_best_ml_nx] = bnb_regression(rslt,yfit,n_part,w_olm);
 
 n_og = sum(cellfun(@numel,rslt.cand));
 n_ml = sum(cellfun(@numel,rslt_ml.cand));
@@ -141,7 +141,7 @@ load(pth+"\results\"+"cen_sim2")
 load(pth+"\params_plot.mat")
 
 [~, data_og] = convergence_stats(rslt,idx_best,cen_sim(1).cost,params_plot);
-[~, data_ml] = convergence_stats(rslt_ml,idx_best_ml,cen_sim(1).cost,params_plot);
+[~, data_ml] = convergence_stats(rslt_ml,idx_best_ml_nx,cen_sim(1).cost,params_plot);
 
 compare_convergence(data_og,data_ml, rslt, rslt_ml,cen_sim(1).cost)
 

@@ -1,4 +1,4 @@
-function [part_best, rslt_ml, idx_best] = bnb_regression(rslt,yfit,n_part,w_olm)
+function [part_best, rslt_ml, idx_best_ox, idx_best_nx] = bnb_regression(rslt,yfit,n_part,w_olm)
 %BNB_REGRESSION branch and bound with fit prediction integrated and known solutions 
 %
 %   [part_best, rslt_ml, idx_best] = BNB_REGRESSION(rslt,yfit,n_part,w_olm)
@@ -15,14 +15,15 @@ function [part_best, rslt_ml, idx_best] = bnb_regression(rslt,yfit,n_part,w_olm)
 %   OUTPUTS:
 %       part_best - Matrix of best ml_informed element partitioning.
 %       rslt_ml   - Structure containing screened candidates and costs.
-%       idx_best  - Index in rslt_ml of the best-performing partition.
+%       idx_best_ox - Index in rslt of the best-performing partition.
+%       idx_best_nx - Index in rslt_ml of the best-performing partition.
 %
 %   DEPENDENCIES: dec2part
 
 %% Problem Setup
 
 % Initial bounding cost
-idx_best = zeros(1,2);
+idx_best_ox = zeros(1,2);
 c_bound = Inf;
 
 rslt_ml.cand = cell(1,n_part);
@@ -50,14 +51,15 @@ for idx_split = 1:n_part
     [c_bound_new, idx_best_row] = min(c_vld,[],'all');
     if c_bound_new< c_bound
         c_bound = c_bound_new;
-        idx_best = [idx_split rslt_ml.idx_old{idx_split}(idx_best_row)];
+        idx_best_ox = [idx_split rslt_ml.idx_old{idx_split}(idx_best_row)];
+        idx_best_nx = [idx_split idx_best_row];
     end
 end
 
 %% Output best partition
 
-if ~all(idx_best == zeros(1,2))
-    part_best = dec2part(idx_best(2),idx_best(1),rslt.cand(1:idx_best(1)),w_olm.minDigits)+1;
+if ~all(idx_best_ox == zeros(1,2))
+    part_best = dec2part(idx_best_ox(2),idx_best_ox(1),rslt.cand(1:idx_best_ox(1)),w_olm.minDigits)+1;
 else
     error('No viable solutions found')
 end
