@@ -137,7 +137,7 @@ fig_confusion(val,yfit)
 fig_ROC(vertcat(val{:}),vertcat(yfit{:}), vertcat(scores{:}))
 %span_classifier(rslt,n_cand,n_comm);
 
-load("cen_sim2");
+load(pth+"\results\"+"cen_sim2");
 
 [~, data_og] = convergence_stats(rslt,idx_best,cen_sim(1).cost,params_plot);
 [~, data_ml] = convergence_stats(rslt_ml,idx_best_ml,cen_sim(1).cost,params_plot);
