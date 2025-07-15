@@ -33,6 +33,7 @@ mdl = {cell(n_q_train,n_q_learner,n_rpt)};
 precision = zeros(n_q_train,n_q_learner,n_rpt);
 recall = precision;
 accuracy = precision;
+time_train = precision;
 
 %% Try different parameters
 idx_split = 1;
@@ -50,7 +51,9 @@ for idx_rpt = 1:n_rpt
     
         for idx_ql = 1:n_q_learner
             % Train Model
+            tic
             [mdl{idx_qt,idx_ql,idx_rpt}, ~] = trainClassifier(train,costMatrix,q_learner(idx_ql));
+            time_train(idx_qt,idx_ql,idx_rpt) = toc;
             % Get Results
             [yfit, ~] = mdl{idx_qt,idx_ql,idx_rpt}.predictFcn(val(:,1:end-1));
             c = confusionmat(val.IsConverge,yfit);
@@ -72,14 +75,17 @@ accuracy_std  = std(accuracy, 0, 3);
 recall_mean = mean(recall, 3);
 recall_std  = std(recall, 0, 3);
 
+time_mean = mean(time_train, 3);
+time_std  = std(time_train, 0, 3);
+
 %% Plot Results
 
 figure('Name', 'Hyperparameter')
-tiledlayout(3,1)
+tiledlayout(2,2,"TileSpacing","tight")
 clr = lines(n_q_learner);
-ft = 14;
+ft = 12;
 ln = 1;
-mk = 8;
+mk = 3;
 
 nexttile; hold on
 for idx_ql = 1:n_q_learner
@@ -87,11 +93,14 @@ for idx_ql = 1:n_q_learner
         'Color', clr(idx_ql,:), 'MarkerFaceColor', clr(idx_ql,:),'LineWidth',ln,'MarkerSize',mk);
 end
 ylabel('Accuracy','FontSize',ft);
-lgd = legend(string(q_learner),'Location', 'southeast','FontSize',ft-2);
+lgd = legend(string(q_learner),'Location', 'southeast','FontSize',ft-2,'Autoupdate','off');
 lgd.Title.String = '\# of Learners';
 xticks(q_train);
 ax = gca;
 ax.FontSize = ft-2;
+ax.XLim = [0 max(q_train)];
+ax.YLim = [.8 .95];
+set(ax, 'XTickLabel', []);
 box on; grid on; hold off;
 
 nexttile; hold on
@@ -103,18 +112,39 @@ ylabel('Precision','FontSize',ft);
 xticks(q_train);
 ax = gca;
 ax.FontSize = ft-2;
+ax.XLim = [0 max(q_train)];
+ax.YLim = [.2 .8];
+set(gca, 'XTickLabel', []); 
 box on; grid on; hold off;
 
 nexttile; hold on;
 for idx_ql = 1:n_q_learner
     errorbar(q_train, recall_mean(:, idx_ql), recall_std(:,idx_ql), 'o-', ...
-            'Color',clr(idx_ql,:), 'MarkerFaceColor', clr(idx_ql,:),'LineWidth',ln,'MarkerSize',mk+2);
+            'Color',clr(idx_ql,:), 'MarkerFaceColor', clr(idx_ql,:),'LineWidth',ln,'MarkerSize',mk);
 end
 ylabel('Recall','FontSize',ft);
 xticks(q_train);
 ax = gca;
 ax.FontSize = ft-2;
+ax.XLim = [0 max(q_train)];
+ax.YLim = [0 .9];
+%set(gca, 'XTickLabel', []); 
+xlabel('Number of Training Points','FontSize',ft);
 box on; grid on; hold off;
+
+nexttile; hold on;
+for idx_ql = 1:n_q_learner
+    errorbar(q_train, time_mean(:, idx_ql), time_std(:,idx_ql), 'o-', ...
+            'Color',clr(idx_ql,:), 'MarkerFaceColor', clr(idx_ql,:),'LineWidth',ln,'MarkerSize',mk);
+end
+ylabel('Time [s]','FontSize',ft);
+xticks(q_train);
+ax = gca;
+ax.FontSize = ft-2;
+ax.XLim = [0 max(q_train)];
+ax.YLim = [0 45];
+box on; grid on; hold off;
+
 xlabel('Number of Training Points','FontSize',ft);
 
 

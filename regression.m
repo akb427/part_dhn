@@ -135,7 +135,7 @@ fprintf('There was an %.1f%% reduction in iterations.\n',(n_iter_og-n_iter_ml)/n
 [pd,deltaPD] = fig_partialDependence(mdl,Gcomm);
 fig_confusion(val,yfit)
 fig_ROC(vertcat(val{:}),vertcat(yfit{:}), vertcat(scores{:}))
-%span_classifier(rslt,n_cand,n_comm);
+span_classifier(rslt,n_cand,n_comm);
 
 load(pth+"\results\"+"cen_sim2")
 load(pth+"\params_plot.mat")
