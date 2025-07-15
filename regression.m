@@ -12,8 +12,13 @@
 %
 %   SEE ALSO: generate_problem, partition_system, process results.
 
-%%
+%% Setup
 clc, clear, close all
+
+pth = pwd;
+addpath(fullfile(pth, 'bnb'));
+addpath(fullfile(pth, 'regression'));
+
 %% Load Data
 
 pth = pwd;
