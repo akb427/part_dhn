@@ -81,7 +81,7 @@ time_std  = std(time_train, 0, 3);
 %% Plot Results
 
 figure('Name', 'Hyperparameter')
-tiledlayout(2,2,"TileSpacing","tight")
+tiledlayout(4,1,"TileSpacing","tight")
 clr = lines(n_q_learner);
 ft = 12;
 ln = 1;
@@ -128,8 +128,7 @@ ax = gca;
 ax.FontSize = ft-2;
 ax.XLim = [0 max(q_train)];
 ax.YLim = [0 .9];
-%set(gca, 'XTickLabel', []); 
-xlabel('Number of Training Points','FontSize',ft);
+set(gca, 'XTickLabel', []); 
 box on; grid on; hold off;
 
 nexttile; hold on;
@@ -148,4 +147,4 @@ box on; grid on; hold off;
 xlabel('Number of Training Points','FontSize',ft);
 
 
-end
+end 
