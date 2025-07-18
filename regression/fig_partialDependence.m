@@ -4,17 +4,19 @@ function [pd,deltaPD] = fig_partialDependence(mdl,Gcomm)
 %   [pd,deltaPD] = FIG_PARTIALDEPENDENCE(mdl,Gcomm)
 %
 %   DESCRIPTION:
-%   Briefly explain the purpose of the function, what it computes, or how it
-%   fits into the overall workflow. Mention any important assumptions or side
-%   effects (e.g., plotting, modifying global variables, saving files).
+%   This function takes the binary classification model and gets the
+%   partial dependence of the predictor score on each communication link
+%   used in the model. It then plots a graph of the communicaiton link and
+%   highlights the relative change in partial dependence caused by
+%   introducing that communication link. 
 %
 %   INPUTS:
-%       mdl     - Structure of model of classifier
-%       Gcomm   - Fully connected communication graph
+%       mdl     - Structure of model of classifier.
+%       Gcomm   - Fully connected communication graph.
 %
 %   OUTPUTS:
-%       pd      - Description of output 1 (what it represents)
-%       deltaPD - Description of output 2
+%       pd      - Cell array of partial dependence values.
+%       deltaPD - Change in predictor score for each model variable.
 
 %% Get Partial Dependence Values
 
