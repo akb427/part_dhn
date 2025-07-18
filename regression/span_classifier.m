@@ -93,13 +93,13 @@ for idx_ql = 1:n_q_learner
         'Color', clr(idx_ql,:), 'MarkerFaceColor', clr(idx_ql,:),'LineWidth',ln,'MarkerSize',mk);
 end
 ylabel('Accuracy','FontSize',ft);
-lgd = legend(string(q_learner),'Location', 'southeast','FontSize',ft-2,'Autoupdate','off');
-lgd.Title.String = '\# of Learners';
+lgd = legend(string(q_learner)+" Learners",'Location', 'southeast','FontSize',ft-2,'Autoupdate','off');
+%lgd.Title.String = '\# of Learners';
 xticks(q_train);
 ax = gca;
 ax.FontSize = ft-2;
 ax.XLim = [0 max(q_train)];
-ax.YLim = [.8 .95];
+ax.YLim = [.75 .95];
 set(ax, 'XTickLabel', []);
 box on; grid on; hold off;
 
@@ -127,7 +127,7 @@ xticks(q_train);
 ax = gca;
 ax.FontSize = ft-2;
 ax.XLim = [0 max(q_train)];
-ax.YLim = [0 .9];
+ax.YLim = [.15 .85];
 set(gca, 'XTickLabel', []); 
 box on; grid on; hold off;
 
@@ -141,10 +141,11 @@ xticks(q_train);
 ax = gca;
 ax.FontSize = ft-2;
 ax.XLim = [0 max(q_train)];
-ax.YLim = [0 45];
+ax.YLim = [0 50];
+ax.YTick = [0 25 50];
 box on; grid on; hold off;
 
-xlabel('Number of Training Points','FontSize',ft);
-
+xlabel('Training Points','FontSize',ft);
+ax.FontSize = ft-2;
 
 end 

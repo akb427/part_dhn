@@ -34,10 +34,10 @@ end
 ft = 14;
 
 figure('Name','Trials','Position',[1125,1102,472,265]);
-b = bar(2:max_size, cell2mat(n_solved), 'grouped', 'BarWidth', 1,'Interpreter','latex');
+b = bar(2:max_size, cell2mat(n_solved), 'grouped', 'BarWidth', 1,'Interpreter','latex','GroupWidth',.9);
 lgd = legend({'Original', 'Learning-Enhanced'}, 'Location', 'northeast');
 lgd.FontSize = ft-2;
-ylim([0 2.7*10^4])
+ylim([0 3*10^4])
 xlim([1.5, max_size+0.5]);
 ax = gca;
 ax.FontSize = ft-2;

@@ -18,6 +18,7 @@ clc, clear, close all
 pth = pwd;
 addpath(fullfile(pth, 'bnb'));
 addpath(fullfile(pth, 'regression'));
+addpath(fullfile(pth, 'results'));
 
 %% Load Data
 
@@ -120,10 +121,10 @@ mdl.accuracy_all  = (c(1,1)+c(2,2))/sum(c,'all');
 
 [part_ml, rslt_ml,idx_best_ml, idx_best_ml_nx] = bnb_regression(rslt,yfit,n_part,w_olm);
 
-n_og = sum(cellfun(@numel,rslt.cand));
-n_ml = sum(cellfun(@numel,rslt_ml.cand));
+n_og = sum(cellfun(@(x) size(x,1),rslt.cand));
+n_ml = sum(cellfun(@(x) size(x,1),rslt_ml.cand));
 n_ml = n_ml+sum(~yfit_train);
-fprintf('There was %.1f%% reduction in solutions searched.\n', (n_og-n_ml)/n_og*100);
+fprintf('There was %.2f%% reduction in solutions searched.\n', (n_og-n_ml)/n_og*100);
 
 n_iter_og = sum(cellfun(@(x) sum(x(:,5)),rslt.cost));
 n_iter_ml = sum(cellfun(@(x) sum(x(:,5)),rslt_ml.cost));
@@ -135,7 +136,7 @@ fprintf('There was an %.1f%% reduction in iterations.\n',(n_iter_og-n_iter_ml)/n
 [pd,deltaPD] = fig_partialDependence(mdl,Gcomm);
 fig_confusion(val,yfit)
 fig_ROC(vertcat(val{:}),vertcat(yfit{:}), vertcat(scores{:}))
-span_classifier(rslt,n_cand,n_comm);
+%span_classifier(rslt,n_cand,n_comm);
 
 load(pth+"\results\"+"cen_sim2")
 load(pth+"\params_plot.mat")
